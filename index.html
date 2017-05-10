@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+  <head lang="en">
+      <meta charset="UTF-8">
+      <title>Firebase demo</title>
+  </head>
+  <body ng-controller="HomeCtrl as home">
+      <h1>{{ home.title }}</h1>
+
+      <h3>Tasks:</h3>
+      <ul ng-if="home.tasks.length">
+        <!-- notice how just doing this prints the entire object.. -->
+        <li ng-repeat="task in home.tasks">{{ task }}</li>
+      </ul>
+      <p ng-if="!home.tasks.length">No tasks to show.</p>
+
+      <input type="text" ng-model="home.taskName" />
+
+      <button ng-click="home.createTask(home.taskName)">Add task</button>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+      <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+
+      <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyAAKRVNRUGHCabbYBZGUULAKsy8VibXeyE",
+          authDomain: "fir-demo-e6b1b.firebaseapp.com",
+          databaseURL: "https://fir-demo-e6b1b.firebaseio.com",
+          projectId: "fir-demo-e6b1b",
+          storageBucket: "fir-demo-e6b1b.appspot.com",
+          messagingSenderId: "109172275177"
+        };
+        firebase.initializeApp(config);
+      </script>
+      <script src="scripts/app.js"></script>
+      <script src="scripts/services/Task.js"></script>
+      <script src="scripts/controllers/HomeCtrl.js"></script>
+  </body>
+</html>
